@@ -4,6 +4,8 @@ Clasificación de consultas bancarias en 77 intenciones con **DistilRoBERTa**, a
 
 Proyecto de Enrique Muñoz · Maestría de Inteligencia Artificial, Universidad Internacional de La Rioja.
 
+[![Checks](https://github.com/enriquemdev/banking77-transformers-demo/actions/workflows/tests.yml/badge.svg)](https://github.com/enriquemdev/banking77-transformers-demo/actions/workflows/tests.yml)
+
 [**Abrir demo**](https://enriquemunozdev--banking77-enrique-munoz-web.modal.run/) · [Notebook ejecutado](ai/notebooks/banking77.ipynb) · [Informe PDF](reports/Enrique_Munoz.pdf)
 
 ![Demo de clasificación](docs/images/demo.jpg)
@@ -45,7 +47,7 @@ scripts/                     # Comprobaciones de integridad de fuentes
 
 ## Ejecutar el notebook
 
-Abre [el notebook](ai/notebooks/banking77.ipynb) en Google Colab y selecciona GPU. Todo el código del experimento está en el cuaderno. La sección de preparación instala las dependencias y configura guardado persistente en Drive.
+Abre [el notebook](ai/notebooks/banking77.ipynb) en Google Colab y selecciona GPU. Para ejecutar en tu propia cuenta, cambia `RUN_MODE="fresh"` y elige un `EXPERIMENT_ID` nuevo en la celda de configuración. El valor predeterminado `resume` solo sirve si ya tienes los artefactos compatibles en tu Drive; el repositorio no incluye ese almacenamiento privado. Todo el código del experimento está en el cuaderno. La sección de preparación instala las dependencias y configura guardado persistente en Drive.
 
 Entrenar y ejecutar Falcon requiere descargar modelos y disponer de GPU; la disponibilidad de Colab gratuito no está garantizada. Las salidas incluidas son evidencia de una ejecución anterior: abrir el archivo no ejecuta entrenamiento nuevo. Consulta [reproducibilidad](docs/reproducibility.md) antes de repetirlo.
 
