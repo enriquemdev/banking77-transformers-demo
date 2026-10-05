@@ -1,0 +1,8 @@
+label,category,precision,recall,f1-score,support,true_positives,false_negatives,false_positives,train_count
+1,age_limit,1.0,1.0,1.0,40.0,40,0,0,110
+2,apple_pay_or_google_pay,1.0,1.0,1.0,40.0,40,0,0,126
+3,atm_support,1.0,1.0,1.0,40.0,40,0,0,87
+30,edit_personal_details,1.0,1.0,1.0,40.0,40,0,0,121
+70,verify_source_of_funds,1.0,1.0,1.0,40.0,40,0,0,113
+71,verify_top_up,1.0,1.0,1.0,40.0,40,0,0,126
+9,card_about_to_expire,0.975609756097561,1.0,0.9876543209876543,40.0,40,0,1,129

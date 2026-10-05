@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clasifica consultas bancarias con DistilRoBERTa y una explicación opcional de Falcon. Proyecto de Enrique Muñoz.">
+  <meta name="color-scheme" content="light">
+  <title>Banking77 — Enrique Muñoz</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/fraunces-600.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/source-sans-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#query">Ir a la consulta</a>
+  <div class="page">
+    <header class="masthead">
+      <a class="wordmark" href="#" aria-label="Banking77, inicio">Banking77</a>
+      <span class="author">Enrique Muñoz</span>
+    </header>
+    <main class="workspace">
+      <section class="intro" aria-labelledby="title">
+        <h1 id="title">¿Qué necesita este cliente?</h1>
+        <p id="language-note" class="helper">Escribe una consulta bancaria en inglés.</p>
+      </section>
+      <section class="experiment" aria-labelledby="try-title">
+        <h2 id="try-title" class="sr-only">Consulta</h2>
+        <form id="query-form" novalidate>
+          <label class="sr-only" for="query">Consulta bancaria en inglés</label>
+          <textarea id="query" name="query" rows="4" maxlength="1200" spellcheck="false" placeholder="I lost my card. What should I do?" aria-describedby="language-note privacy-note form-message"></textarea>
+          <div class="examples" aria-label="Cargar una consulta de ejemplo">
+            <button type="button" data-example="lost">Tarjeta perdida</button>
+            <button type="button" data-example="transfer">Transferencia pendiente</button>
+            <button type="button" data-example="cash">Retiro de efectivo</button>
+          </div>
+          <div id="access-field" class="access-field" hidden>
+            <label for="access-code">Código de acceso</label>
+            <input id="access-code" type="password" autocomplete="off" maxlength="128" aria-describedby="access-help">
+            <p id="access-help" class="caption">Solicítalo a Enrique. Solo se usa en esta sesión.</p>
+          </div>
+          <div class="form-actions">
+            <p id="privacy-note" class="caption">Solo ejemplos ficticios, sin datos personales.</p>
+            <div class="action-line">
+              <button id="classify" class="primary" type="submit"><span>Clasificar</span><span class="loader" aria-hidden="true" hidden></span></button>
+              <button id="cancel" class="text-button" type="button" hidden>Cancelar espera</button>
+            </div>
+          </div>
+          <p id="form-message" class="message" role="status" aria-live="polite" hidden></p>
+        </form>
+        <section id="result" class="result" aria-labelledby="result-title" aria-live="polite" aria-atomic="true" hidden>
+          <div id="empty-result"><h2 id="result-title" class="sr-only">Resultado</h2></div>
+          <div id="prediction" hidden>
+            <p class="result-label">Intención predicha</p>
+            <h2 id="predicted-title" tabindex="-1"></h2>
+            <p id="predicted-label" class="technical-label"></p>
+            <p id="truncation" class="caption" hidden>El modelo procesó solo los primeros 128 tokens.</p>
+            <details class="alternatives"><summary>Otras categorías</summary><ol id="top-three"></ol><p class="caption">Puntuaciones sin calibrar; no garantizan un acierto.</p></details>
+            <div class="explain-action"><button id="explain" class="secondary" type="button">Explicar con Falcon</button><p id="falcon-status" class="caption">El primer arranque puede tardar.</p></div>
+            <p id="explain-message" class="message" role="status" hidden></p>
+            <div id="explanation" class="explanation" hidden><h3>Explicación</h3><blockquote id="explanation-text" lang="en"></blockquote><p class="caption">Puede inventar información. No revela el razonamiento interno del clasificador.</p><p id="format-warning" class="caption" hidden></p></div>
+          </div>
+        </section>
+      </section>
+      <details id="proyecto" class="project-details">
+        <summary>Sobre el modelo</summary>
+        <div class="project-copy">
+          <p><strong>DistilRoBERTa</strong> clasifica entre 77 intenciones bancarias. <strong>Falcon</strong> genera una justificación opcional. No responde consultas ni realiza operaciones.</p>
+          <p>En las 3.080 consultas de prueba: <strong>92,82 % de accuracy</strong> y <strong>0,9282 de F1 macro</strong>. Son resultados del experimento, no una garantía para consultas nuevas. El clasificador también asigna una categoría a textos ajenos al dominio.</p>
+          <p>Las consultas se envían al servicio de inferencia. La aplicación no las guarda, pero el proveedor puede generar registros operativos.</p>
+          <p class="sources"><a href="https://github.com/PolyAI-LDN/task-specific-datasets/tree/master/banking_data" target="_blank" rel="noopener noreferrer">Banking77</a><a href="https://huggingface.co/distilbert/distilroberta-base" target="_blank" rel="noopener noreferrer">DistilRoBERTa</a><a href="https://huggingface.co/tiiuae/falcon-7b-instruct" target="_blank" rel="noopener noreferrer">Falcon</a></p>
+        </div>
+      </details>
+    </main>
+  </div>
+</body>
+</html>

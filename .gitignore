@@ -1,0 +1,27 @@
+# Private credentials and local runtime
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.modal.toml
+access_code*
+Acceso_demo*
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+# Weights and generated training artifacts (not source code)
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.zip
+model/
+models/
+checkpoints/
+wandb/
+.ipynb_checkpoints/
+work/
